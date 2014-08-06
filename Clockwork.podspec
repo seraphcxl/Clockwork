@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Clockwork"
-  s.version      = “0.9.0"
+  s.version      = "0.9.0"
   s.summary      = "A thread safety warpper for CoreData."
 
   s.description  = <<-DESC
