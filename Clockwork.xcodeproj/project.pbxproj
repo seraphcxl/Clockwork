@@ -1,0 +1,815 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		278A2B796A7C4F7D867C8291 /* libPods-Clockwork-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65965F25A55744E18E4F430D /* libPods-Clockwork-OSX.a */; };
+		89431FF91991C7E80008FCD3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89431FCD1991C7290008FCD3 /* Cocoa.framework */; };
+		894320051991C7E80008FCD3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89431FDE1991C7290008FCD3 /* XCTest.framework */; };
+		894320061991C7E80008FCD3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89431FCD1991C7290008FCD3 /* Cocoa.framework */; };
+		894320091991C7E80008FCD3 /* libClockwork-OSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89431FF81991C7E80008FCD3 /* libClockwork-OSX.a */; };
+		8943200F1991C7E80008FCD3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8943200D1991C7E80008FCD3 /* InfoPlist.strings */; };
+		894320111991C7E80008FCD3 /* Clockwork_OSXTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 894320101991C7E80008FCD3 /* Clockwork_OSXTests.m */; };
+		8943201E1991C7F80008FCD3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8943201D1991C7F80008FCD3 /* Foundation.framework */; };
+		8943202B1991C7F80008FCD3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89431FDE1991C7290008FCD3 /* XCTest.framework */; };
+		8943202C1991C7F80008FCD3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8943201D1991C7F80008FCD3 /* Foundation.framework */; };
+		8943202E1991C7F80008FCD3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8943202D1991C7F80008FCD3 /* UIKit.framework */; };
+		894320311991C7F80008FCD3 /* libClockwork-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8943201C1991C7F80008FCD3 /* libClockwork-iOS.a */; };
+		894320371991C7F80008FCD3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 894320351991C7F80008FCD3 /* InfoPlist.strings */; };
+		894320391991C7F80008FCD3 /* Clockwork_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 894320381991C7F80008FCD3 /* Clockwork_iOSTests.m */; };
+		894320561991C8670008FCD3 /* DCCoreDataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 894320521991C8670008FCD3 /* DCCoreDataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		894320571991C8670008FCD3 /* DCCoreDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 894320531991C8670008FCD3 /* DCCoreDataStore.m */; };
+		894320581991C8670008FCD3 /* DCCoreDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 894320531991C8670008FCD3 /* DCCoreDataStore.m */; };
+		894320591991C8670008FCD3 /* DCCoreDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 894320531991C8670008FCD3 /* DCCoreDataStore.m */; };
+		8943205A1991C8670008FCD3 /* DCCoreDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 894320531991C8670008FCD3 /* DCCoreDataStore.m */; };
+		8943205B1991C8670008FCD3 /* DCCoreDataStoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 894320541991C8670008FCD3 /* DCCoreDataStoreManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8943205C1991C8670008FCD3 /* DCCoreDataStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 894320551991C8670008FCD3 /* DCCoreDataStoreManager.m */; };
+		8943205D1991C8670008FCD3 /* DCCoreDataStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 894320551991C8670008FCD3 /* DCCoreDataStoreManager.m */; };
+		8943205E1991C8670008FCD3 /* DCCoreDataStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 894320551991C8670008FCD3 /* DCCoreDataStoreManager.m */; };
+		8943205F1991C8670008FCD3 /* DCCoreDataStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 894320551991C8670008FCD3 /* DCCoreDataStoreManager.m */; };
+		894320611991C88C0008FCD3 /* DCClockwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 894320601991C88C0008FCD3 /* DCClockwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82DD485628E42349BA7C61C /* libPods-Clockwork-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F59AE2F6525F47FE96345EC1 /* libPods-Clockwork-iOS.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		894320071991C7E80008FCD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89431FC21991C7290008FCD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89431FF71991C7E80008FCD3;
+			remoteInfo = "Clockwork-OSX";
+		};
+		8943202F1991C7F80008FCD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89431FC21991C7290008FCD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8943201B1991C7F80008FCD3;
+			remoteInfo = "Clockwork-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8943201A1991C7F80008FCD3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3BF1C46883554BDBA539EBC2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		65965F25A55744E18E4F430D /* libPods-Clockwork-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Clockwork-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8501FD72CA184FB495BE04E3 /* Pods-Clockwork-OSX.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clockwork-OSX.xcconfig"; path = "Pods/Pods-Clockwork-OSX.xcconfig"; sourceTree = "<group>"; };
+		89431FCD1991C7290008FCD3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		89431FD01991C7290008FCD3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		89431FD11991C7290008FCD3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		89431FD21991C7290008FCD3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		89431FDE1991C7290008FCD3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		89431FF81991C7E80008FCD3 /* libClockwork-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libClockwork-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89431FFC1991C7E80008FCD3 /* Clockwork-OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Clockwork-OSX-Prefix.pch"; sourceTree = "<group>"; };
+		894320041991C7E80008FCD3 /* Clockwork-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Clockwork-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8943200C1991C7E80008FCD3 /* Clockwork-OSXTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Clockwork-OSXTests-Info.plist"; sourceTree = "<group>"; };
+		8943200E1991C7E80008FCD3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		894320101991C7E80008FCD3 /* Clockwork_OSXTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Clockwork_OSXTests.m; sourceTree = "<group>"; };
+		8943201C1991C7F80008FCD3 /* libClockwork-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libClockwork-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8943201D1991C7F80008FCD3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		894320211991C7F80008FCD3 /* Clockwork-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Clockwork-iOS-Prefix.pch"; sourceTree = "<group>"; };
+		8943202A1991C7F80008FCD3 /* Clockwork-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Clockwork-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8943202D1991C7F80008FCD3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		894320341991C7F80008FCD3 /* Clockwork-iOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Clockwork-iOSTests-Info.plist"; sourceTree = "<group>"; };
+		894320361991C7F80008FCD3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		894320381991C7F80008FCD3 /* Clockwork_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Clockwork_iOSTests.m; sourceTree = "<group>"; };
+		894320521991C8670008FCD3 /* DCCoreDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCoreDataStore.h; sourceTree = "<group>"; };
+		894320531991C8670008FCD3 /* DCCoreDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCoreDataStore.m; sourceTree = "<group>"; };
+		894320541991C8670008FCD3 /* DCCoreDataStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCoreDataStoreManager.h; sourceTree = "<group>"; };
+		894320551991C8670008FCD3 /* DCCoreDataStoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCoreDataStoreManager.m; sourceTree = "<group>"; };
+		894320601991C88C0008FCD3 /* DCClockwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCClockwork.h; sourceTree = "<group>"; };
+		894320631991CED80008FCD3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		A473AC7706BC4770B9A7B101 /* Pods-Clockwork-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clockwork-iOS.xcconfig"; path = "Pods/Pods-Clockwork-iOS.xcconfig"; sourceTree = "<group>"; };
+		F59AE2F6525F47FE96345EC1 /* libPods-Clockwork-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Clockwork-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		89431FF51991C7E80008FCD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89431FF91991C7E80008FCD3 /* Cocoa.framework in Frameworks */,
+				278A2B796A7C4F7D867C8291 /* libPods-Clockwork-OSX.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		894320011991C7E80008FCD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				894320061991C7E80008FCD3 /* Cocoa.framework in Frameworks */,
+				894320051991C7E80008FCD3 /* XCTest.framework in Frameworks */,
+				894320091991C7E80008FCD3 /* libClockwork-OSX.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		894320191991C7F80008FCD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8943201E1991C7F80008FCD3 /* Foundation.framework in Frameworks */,
+				C82DD485628E42349BA7C61C /* libPods-Clockwork-iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		894320271991C7F80008FCD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8943202B1991C7F80008FCD3 /* XCTest.framework in Frameworks */,
+				8943202E1991C7F80008FCD3 /* UIKit.framework in Frameworks */,
+				8943202C1991C7F80008FCD3 /* Foundation.framework in Frameworks */,
+				894320311991C7F80008FCD3 /* libClockwork-iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		89431FC11991C7290008FCD3 = {
+			isa = PBXGroup;
+			children = (
+				894320501991C8670008FCD3 /* Clockwork */,
+				89431FFA1991C7E80008FCD3 /* Clockwork-OSX */,
+				8943200A1991C7E80008FCD3 /* Clockwork-OSXTests */,
+				8943201F1991C7F80008FCD3 /* Clockwork-iOS */,
+				894320321991C7F80008FCD3 /* Clockwork-iOSTests */,
+				89431FCC1991C7290008FCD3 /* Frameworks */,
+				89431FCB1991C7290008FCD3 /* Products */,
+				8501FD72CA184FB495BE04E3 /* Pods-Clockwork-OSX.xcconfig */,
+				A473AC7706BC4770B9A7B101 /* Pods-Clockwork-iOS.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		89431FCB1991C7290008FCD3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				89431FF81991C7E80008FCD3 /* libClockwork-OSX.a */,
+				894320041991C7E80008FCD3 /* Clockwork-OSXTests.xctest */,
+				8943201C1991C7F80008FCD3 /* libClockwork-iOS.a */,
+				8943202A1991C7F80008FCD3 /* Clockwork-iOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		89431FCC1991C7290008FCD3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				894320631991CED80008FCD3 /* libz.dylib */,
+				89431FCD1991C7290008FCD3 /* Cocoa.framework */,
+				89431FDE1991C7290008FCD3 /* XCTest.framework */,
+				8943201D1991C7F80008FCD3 /* Foundation.framework */,
+				8943202D1991C7F80008FCD3 /* UIKit.framework */,
+				89431FCF1991C7290008FCD3 /* Other Frameworks */,
+				3BF1C46883554BDBA539EBC2 /* libPods.a */,
+				65965F25A55744E18E4F430D /* libPods-Clockwork-OSX.a */,
+				F59AE2F6525F47FE96345EC1 /* libPods-Clockwork-iOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		89431FCF1991C7290008FCD3 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				89431FD01991C7290008FCD3 /* Foundation.framework */,
+				89431FD11991C7290008FCD3 /* CoreData.framework */,
+				89431FD21991C7290008FCD3 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		89431FFA1991C7E80008FCD3 /* Clockwork-OSX */ = {
+			isa = PBXGroup;
+			children = (
+				89431FFB1991C7E80008FCD3 /* Supporting Files */,
+			);
+			path = "Clockwork-OSX";
+			sourceTree = "<group>";
+		};
+		89431FFB1991C7E80008FCD3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				89431FFC1991C7E80008FCD3 /* Clockwork-OSX-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8943200A1991C7E80008FCD3 /* Clockwork-OSXTests */ = {
+			isa = PBXGroup;
+			children = (
+				894320101991C7E80008FCD3 /* Clockwork_OSXTests.m */,
+				8943200B1991C7E80008FCD3 /* Supporting Files */,
+			);
+			path = "Clockwork-OSXTests";
+			sourceTree = "<group>";
+		};
+		8943200B1991C7E80008FCD3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8943200C1991C7E80008FCD3 /* Clockwork-OSXTests-Info.plist */,
+				8943200D1991C7E80008FCD3 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8943201F1991C7F80008FCD3 /* Clockwork-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				894320201991C7F80008FCD3 /* Supporting Files */,
+			);
+			path = "Clockwork-iOS";
+			sourceTree = "<group>";
+		};
+		894320201991C7F80008FCD3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				894320211991C7F80008FCD3 /* Clockwork-iOS-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		894320321991C7F80008FCD3 /* Clockwork-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				894320381991C7F80008FCD3 /* Clockwork_iOSTests.m */,
+				894320331991C7F80008FCD3 /* Supporting Files */,
+			);
+			path = "Clockwork-iOSTests";
+			sourceTree = "<group>";
+		};
+		894320331991C7F80008FCD3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				894320341991C7F80008FCD3 /* Clockwork-iOSTests-Info.plist */,
+				894320351991C7F80008FCD3 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		894320501991C8670008FCD3 /* Clockwork */ = {
+			isa = PBXGroup;
+			children = (
+				894320511991C8670008FCD3 /* Public */,
+				894320601991C88C0008FCD3 /* DCClockwork.h */,
+			);
+			path = Clockwork;
+			sourceTree = "<group>";
+		};
+		894320511991C8670008FCD3 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				894320521991C8670008FCD3 /* DCCoreDataStore.h */,
+				894320531991C8670008FCD3 /* DCCoreDataStore.m */,
+				894320541991C8670008FCD3 /* DCCoreDataStoreManager.h */,
+				894320551991C8670008FCD3 /* DCCoreDataStoreManager.m */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		89431FF61991C7E80008FCD3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				894320611991C88C0008FCD3 /* DCClockwork.h in Headers */,
+				8943205B1991C8670008FCD3 /* DCCoreDataStoreManager.h in Headers */,
+				894320561991C8670008FCD3 /* DCCoreDataStore.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		89431FF71991C7E80008FCD3 /* Clockwork-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 894320121991C7E80008FCD3 /* Build configuration list for PBXNativeTarget "Clockwork-OSX" */;
+			buildPhases = (
+				7F2651B789BE466FA96F07AD /* Check Pods Manifest.lock */,
+				89431FF41991C7E80008FCD3 /* Sources */,
+				89431FF51991C7E80008FCD3 /* Frameworks */,
+				89431FF61991C7E80008FCD3 /* Headers */,
+				E350E2A2F90542068D82BE06 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Clockwork-OSX";
+			productName = "Clockwork-OSX";
+			productReference = 89431FF81991C7E80008FCD3 /* libClockwork-OSX.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		894320031991C7E80008FCD3 /* Clockwork-OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 894320151991C7E80008FCD3 /* Build configuration list for PBXNativeTarget "Clockwork-OSXTests" */;
+			buildPhases = (
+				894320001991C7E80008FCD3 /* Sources */,
+				894320011991C7E80008FCD3 /* Frameworks */,
+				894320021991C7E80008FCD3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				894320081991C7E80008FCD3 /* PBXTargetDependency */,
+			);
+			name = "Clockwork-OSXTests";
+			productName = "Clockwork-OSXTests";
+			productReference = 894320041991C7E80008FCD3 /* Clockwork-OSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8943201B1991C7F80008FCD3 /* Clockwork-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8943203A1991C7F80008FCD3 /* Build configuration list for PBXNativeTarget "Clockwork-iOS" */;
+			buildPhases = (
+				C25FB0F8B39C40669B99BB6F /* Check Pods Manifest.lock */,
+				894320181991C7F80008FCD3 /* Sources */,
+				894320191991C7F80008FCD3 /* Frameworks */,
+				8943201A1991C7F80008FCD3 /* CopyFiles */,
+				B8AED6D5923845938A1084B0 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Clockwork-iOS";
+			productName = "Clockwork-iOS";
+			productReference = 8943201C1991C7F80008FCD3 /* libClockwork-iOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		894320291991C7F80008FCD3 /* Clockwork-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8943203D1991C7F80008FCD3 /* Build configuration list for PBXNativeTarget "Clockwork-iOSTests" */;
+			buildPhases = (
+				894320261991C7F80008FCD3 /* Sources */,
+				894320271991C7F80008FCD3 /* Frameworks */,
+				894320281991C7F80008FCD3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				894320301991C7F80008FCD3 /* PBXTargetDependency */,
+			);
+			name = "Clockwork-iOSTests";
+			productName = "Clockwork-iOSTests";
+			productReference = 8943202A1991C7F80008FCD3 /* Clockwork-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		89431FC21991C7290008FCD3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Derek Chen";
+			};
+			buildConfigurationList = 89431FC51991C7290008FCD3 /* Build configuration list for PBXProject "Clockwork" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 89431FC11991C7290008FCD3;
+			productRefGroup = 89431FCB1991C7290008FCD3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				89431FF71991C7E80008FCD3 /* Clockwork-OSX */,
+				894320031991C7E80008FCD3 /* Clockwork-OSXTests */,
+				8943201B1991C7F80008FCD3 /* Clockwork-iOS */,
+				894320291991C7F80008FCD3 /* Clockwork-iOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		894320021991C7E80008FCD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8943200F1991C7E80008FCD3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		894320281991C7F80008FCD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				894320371991C7F80008FCD3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7F2651B789BE466FA96F07AD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B8AED6D5923845938A1084B0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Clockwork-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C25FB0F8B39C40669B99BB6F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E350E2A2F90542068D82BE06 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Clockwork-OSX-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		89431FF41991C7E80008FCD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				894320571991C8670008FCD3 /* DCCoreDataStore.m in Sources */,
+				8943205C1991C8670008FCD3 /* DCCoreDataStoreManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		894320001991C7E80008FCD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8943205D1991C8670008FCD3 /* DCCoreDataStoreManager.m in Sources */,
+				894320111991C7E80008FCD3 /* Clockwork_OSXTests.m in Sources */,
+				894320581991C8670008FCD3 /* DCCoreDataStore.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		894320181991C7F80008FCD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				894320591991C8670008FCD3 /* DCCoreDataStore.m in Sources */,
+				8943205E1991C8670008FCD3 /* DCCoreDataStoreManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		894320261991C7F80008FCD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8943205F1991C8670008FCD3 /* DCCoreDataStoreManager.m in Sources */,
+				894320391991C7F80008FCD3 /* Clockwork_iOSTests.m in Sources */,
+				8943205A1991C8670008FCD3 /* DCCoreDataStore.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		894320081991C7E80008FCD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 89431FF71991C7E80008FCD3 /* Clockwork-OSX */;
+			targetProxy = 894320071991C7E80008FCD3 /* PBXContainerItemProxy */;
+		};
+		894320301991C7F80008FCD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8943201B1991C7F80008FCD3 /* Clockwork-iOS */;
+			targetProxy = 8943202F1991C7F80008FCD3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8943200D1991C7E80008FCD3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8943200E1991C7E80008FCD3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		894320351991C7F80008FCD3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				894320361991C7F80008FCD3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		89431FEC1991C7290008FCD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		89431FED1991C7290008FCD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		894320131991C7E80008FCD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8501FD72CA184FB495BE04E3 /* Pods-Clockwork-OSX.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Clockwork-OSX/Clockwork-OSX-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		894320141991C7E80008FCD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8501FD72CA184FB495BE04E3 /* Pods-Clockwork-OSX.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Clockwork-OSX/Clockwork-OSX-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		894320161991C7E80008FCD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Clockwork-OSX/Clockwork-OSX-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Clockwork-OSXTests/Clockwork-OSXTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		894320171991C7E80008FCD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Clockwork-OSX/Clockwork-OSX-Prefix.pch";
+				INFOPLIST_FILE = "Clockwork-OSXTests/Clockwork-OSXTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		8943203B1991C7F80008FCD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A473AC7706BC4770B9A7B101 /* Pods-Clockwork-iOS.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/Clockwork_iOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Clockwork-iOS/Clockwork-iOS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8943203C1991C7F80008FCD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A473AC7706BC4770B9A7B101 /* Pods-Clockwork-iOS.xcconfig */;
+			buildSettings = {
+				DSTROOT = /tmp/Clockwork_iOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Clockwork-iOS/Clockwork-iOS-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8943203E1991C7F80008FCD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Clockwork-iOS/Clockwork-iOS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Clockwork-iOSTests/Clockwork-iOSTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		8943203F1991C7F80008FCD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Clockwork-iOS/Clockwork-iOS-Prefix.pch";
+				INFOPLIST_FILE = "Clockwork-iOSTests/Clockwork-iOSTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		89431FC51991C7290008FCD3 /* Build configuration list for PBXProject "Clockwork" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89431FEC1991C7290008FCD3 /* Debug */,
+				89431FED1991C7290008FCD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		894320121991C7E80008FCD3 /* Build configuration list for PBXNativeTarget "Clockwork-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				894320131991C7E80008FCD3 /* Debug */,
+				894320141991C7E80008FCD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		894320151991C7E80008FCD3 /* Build configuration list for PBXNativeTarget "Clockwork-OSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				894320161991C7E80008FCD3 /* Debug */,
+				894320171991C7E80008FCD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8943203A1991C7F80008FCD3 /* Build configuration list for PBXNativeTarget "Clockwork-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8943203B1991C7F80008FCD3 /* Debug */,
+				8943203C1991C7F80008FCD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8943203D1991C7F80008FCD3 /* Build configuration list for PBXNativeTarget "Clockwork-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8943203E1991C7F80008FCD3 /* Debug */,
+				8943203F1991C7F80008FCD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 89431FC21991C7290008FCD3 /* Project object */;
+}
