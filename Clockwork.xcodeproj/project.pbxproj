@@ -32,6 +32,9 @@
 		8943205E1991C8670008FCD3 /* DCCoreDataStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 894320551991C8670008FCD3 /* DCCoreDataStoreManager.m */; };
 		8943205F1991C8670008FCD3 /* DCCoreDataStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 894320551991C8670008FCD3 /* DCCoreDataStoreManager.m */; };
 		894320611991C88C0008FCD3 /* DCClockwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 894320601991C88C0008FCD3 /* DCClockwork.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		894320661991D4090008FCD3 /* DCCoreDataStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 894320521991C8670008FCD3 /* DCCoreDataStore.h */; };
+		894320671991D4090008FCD3 /* DCCoreDataStoreManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 894320541991C8670008FCD3 /* DCCoreDataStoreManager.h */; };
+		894320681991D4090008FCD3 /* DCClockwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 894320601991C88C0008FCD3 /* DCClockwork.h */; };
 		C82DD485628E42349BA7C61C /* libPods-Clockwork-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F59AE2F6525F47FE96345EC1 /* libPods-Clockwork-iOS.a */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +62,9 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				894320661991D4090008FCD3 /* DCCoreDataStore.h in CopyFiles */,
+				894320671991D4090008FCD3 /* DCCoreDataStoreManager.h in CopyFiles */,
+				894320681991D4090008FCD3 /* DCClockwork.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
