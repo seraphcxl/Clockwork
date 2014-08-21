@@ -13,8 +13,8 @@
 
 typedef NSURL *(^DCCDSQueryPSCURLBlock)(void);
 typedef void (^DCCDSConfigureEntityBlock)(NSManagedObjectModel *aModel);
-typedef void (^DCCDSMOCConfigureBlock)(NSManagedObjectContext *moc, BOOL *stop);
-typedef void (^DCCDSMOCActionBlock)(NSManagedObjectModel *model, NSManagedObjectContext *moc, BOOL *stop);
+typedef void (^DCCDSMOCConfigureBlock)(NSManagedObjectContext *moc, NSError **err);
+typedef void (^DCCDSMOCActionBlock)(NSManagedObjectModel *model, NSManagedObjectContext *moc, BOOL *shouldCacheContext, NSError **err);
 
 @class DCCoreDataStore;
 
@@ -23,11 +23,12 @@ typedef void (^DCCDSMOCActionBlock)(NSManagedObjectModel *model, NSManagedObject
 
 @property (nonatomic, copy) DCCDSQueryPSCURLBlock queryPSCURLBlock;
 @property (nonatomic, copy) DCCDSConfigureEntityBlock configureEntityBlock;
-@property (nonatomic, SAFE_ARC_PROP_STRONG, readonly) NSManagedObjectContext *mainManagedObjectContext;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *mainManagedObjectContext;
 
-- (id)initWithQueryPSCURLBlock:(DCCDSQueryPSCURLBlock)aQueryPSCURLBlock andConfigureEntityBlock:(DCCDSConfigureEntityBlock)aConfigureEntityBlock;
+- (id)initWithQueryPSCURLBlock:(DCCDSQueryPSCURLBlock)aQueryPSCURLBlock configureEntityBlock:(DCCDSConfigureEntityBlock)aConfigureEntityBlock andContextCacheLimit:(NSUInteger)contextCacheLimit;
 - (NSString *)urlString;
-- (int)saveMainManagedObjectContext;
+- (int)saveManagedObjectContext;
+- (void)resign;
 
 - (int)syncAction:(DCCDSMOCActionBlock)aMOCActionBlock withConfigureBlock:(DCCDSMOCConfigureBlock)aMOCConfigureBlock;
 - (int)asyncAction:(DCCDSMOCActionBlock)aMOCActionBlock withConfigureBlock:(DCCDSMOCConfigureBlock)aMOCConfigureBlock;

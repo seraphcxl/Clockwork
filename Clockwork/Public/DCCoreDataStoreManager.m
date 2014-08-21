@@ -12,6 +12,8 @@
 @interface DCCoreDataStoreManager () {
 }
 
+@property (nonatomic, strong) NSMutableDictionary *dataStorePool;  // key:(NSString *) value:(DCCoreDataStore *)
+
 - (void)cleanDataStorePool;
 
 @end
@@ -27,8 +29,7 @@ DEFINE_SINGLETON_FOR_CLASS(DCCoreDataStoreManager)
         if (self) {
             [self cleanDataStorePool];
             
-            _dataStorePool = [[NSMutableDictionary dictionary] threadSafe_init];
-            SAFE_ARC_RETAIN(_dataStorePool);
+            self.dataStorePool = [[NSMutableDictionary dictionary] threadSafe_init];
         }
         return self;
     }
@@ -45,52 +46,79 @@ DEFINE_SINGLETON_FOR_CLASS(DCCoreDataStoreManager)
 
 - (void)addDataStore:(DCCoreDataStore *)aDataStore {
     do {
-        if (!aDataStore || !self.dataStorePool) {
+        if (!aDataStore || !_dataStorePool) {
             break;
         }
-        [self.dataStorePool threadSafe_setObject:aDataStore forKey:[aDataStore urlString]];
+        [_dataStorePool threadSafe_setObject:aDataStore forKey:[aDataStore urlString]];
     } while (NO);
 }
 
 - (void)removeDataStore:(DCCoreDataStore *)aDataStore {
     do {
-        if (!aDataStore || !self.dataStorePool) {
+        if (!aDataStore || !_dataStorePool) {
             break;
         }
-        [self.dataStorePool threadSafe_removeObjectForKey:[aDataStore urlString]];
+        
+        [aDataStore resign];
+        
+        [_dataStorePool threadSafe_removeObjectForKey:[aDataStore urlString]];
+    } while (NO);
+}
+
+- (void)removeDataStoreByURL:(NSString *)aURL {
+    do {
+        if (!aURL || !_dataStorePool) {
+            break;
+        }
+        
+        DCCoreDataStore *store = [self getDataSource:aURL];
+        [store resign];
+        
+        [_dataStorePool threadSafe_removeObjectForKey:aURL];
     } while (NO);
 }
 
 - (void)removeAllDataStores {
     do {
-        if (!self.dataStorePool) {
+        if (!_dataStorePool) {
             break;
         }
-        [self saveAllDataStores];
         
-        [self.dataStorePool threadSafe_removeAllObjects];
+        [self saveAllDataStoresInMainThread];
+        
+        NSArray *allDataStores = [_dataStorePool threadSafe_allValues];
+        for (DCCoreDataStore *dataStore in allDataStores) {
+            [dataStore resign];
+        }
+        
+        [_dataStorePool threadSafe_removeAllObjects];
     } while (NO);
 }
 
 - (DCCoreDataStore *)getDataSource:(NSString *)aURLString {
     DCCoreDataStore *result = nil;
     do {
-        if (!aURLString || !self.dataStorePool) {
+        if (!aURLString || !_dataStorePool) {
             break;
         }
-        result = [self.dataStorePool threadSafe_objectForKey:aURLString];
+        result = [_dataStorePool threadSafe_objectForKey:aURLString];
     } while (NO);
     return result;
 }
 
-- (void)saveAllDataStores {
+- (void)saveAllDataStoresInMainThread {
     do {
-        if (!self.dataStorePool) {
+        if (!_dataStorePool) {
             break;
         }
-        NSArray *allDataStores = [self.dataStorePool threadSafe_allValues];
+        
+        if (![NSThread isMainThread]) {
+            break;
+        }
+        
+        NSArray *allDataStores = [_dataStorePool threadSafe_allValues];
         for (DCCoreDataStore *dataStore in allDataStores) {
-            [dataStore saveMainManagedObjectContext];
+            [dataStore saveManagedObjectContext];
         }
     } while (NO);
 }
@@ -101,7 +129,7 @@ DEFINE_SINGLETON_FOR_CLASS(DCCoreDataStoreManager)
         @synchronized(self) {
             if (_dataStorePool) {
                 [self removeAllDataStores];
-                SAFE_ARC_SAFERELEASE(_dataStorePool);
+                self.dataStorePool = nil;
             }
         }
     } while (NO);

@@ -16,14 +16,15 @@
 @interface DCCoreDataStoreManager : NSObject {
 }
 
-@property (nonatomic, SAFE_ARC_PROP_STRONG, readonly) NSMutableDictionary *dataStorePool;  // key:(NSString *) value:(DCCoreDataStore *)
+@property (nonatomic, strong, readonly) NSMutableDictionary *dataStorePool;  // key:(NSString *) value:(DCCoreDataStore *)
 
 DEFINE_SINGLETON_FOR_HEADER(DCCoreDataStoreManager)
 
 - (void)addDataStore:(DCCoreDataStore *)aDataStore;
 - (void)removeDataStore:(DCCoreDataStore *)aDataStore;
+- (void)removeDataStoreByURL:(NSString *)aURL;
 - (void)removeAllDataStores;
 - (DCCoreDataStore *)getDataSource:(NSString *)aURLString;
-- (void)saveAllDataStores;
+- (void)saveAllDataStoresInMainThread;
 
 @end

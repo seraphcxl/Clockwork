@@ -10,12 +10,15 @@
 
 @interface DCCoreDataStore () {
 }
-
-@property (nonatomic, SAFE_ARC_PROP_STRONG) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, SAFE_ARC_PROP_STRONG) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) NSManagedObjectContext *mainManagedObjectContext;
+@property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) DCDictionaryCache *managedObjectContextCahce;
 
 - (void)setupSaveNotification;
+- (NSManagedObjectContext *)getManagedObjectContextForCurrentThread;
 - (NSManagedObjectContext *)queryManagedObjectContextForCurrentThread;
+- (void)cacheManagedObjectContext:(NSManagedObjectContext *)context forThread:(NSString *)threadID;
 
 @end
 
@@ -26,31 +29,63 @@
 @synthesize mainManagedObjectContext = _mainManagedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize managedObjectContextCahce = _managedObjectContextCahce;
 
-- (id)initWithQueryPSCURLBlock:(DCCDSQueryPSCURLBlock)aQueryPSCURLBlock andConfigureEntityBlock:(DCCDSConfigureEntityBlock)aConfigureEntityBlock {
-    @synchronized(self) {
-        if (aQueryPSCURLBlock == nil || aConfigureEntityBlock == nil) {
-            return nil;
-        }
-        self = [super init];
-        if (self) {
-            self.queryPSCURLBlock = aQueryPSCURLBlock;
-            self.configureEntityBlock = aConfigureEntityBlock;
-            
-            [self setupSaveNotification];
-        }
-        return self;
+- (id)initWithQueryPSCURLBlock:(DCCDSQueryPSCURLBlock)aQueryPSCURLBlock configureEntityBlock:(DCCDSConfigureEntityBlock)aConfigureEntityBlock andContextCacheLimit:(NSUInteger)contextCacheLimit {
+    if (aQueryPSCURLBlock == nil || aConfigureEntityBlock == nil) {
+        return nil;
     }
+    
+    if (![NSThread isMainThread]) {
+        return nil;
+    }
+    
+    self = [super init];
+    if (self) {
+        self.queryPSCURLBlock = aQueryPSCURLBlock;
+        self.configureEntityBlock = aConfigureEntityBlock;
+        
+        self.managedObjectContextCahce = [[DCDictionaryCache alloc] initWithCountLimit:contextCacheLimit];
+        
+        self.managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+        if (_configureEntityBlock) {
+            _configureEntityBlock(_managedObjectModel);
+        }
+        
+        NSURL *storeURL = nil;
+        if (_queryPSCURLBlock) {
+            storeURL = _queryPSCURLBlock();
+        }
+        if (storeURL) {
+            NSError *err = nil;
+            self.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_managedObjectModel];
+            if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&err]) {
+                NSLog(@"PSC load error %@, %@", [err localizedDescription], [err userInfo]);
+            }
+        }
+        
+        _mainManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        _mainManagedObjectContext.persistentStoreCoordinator = _persistentStoreCoordinator;
+        
+        NSString *threadID = [NSObject createMemoryID:[NSThread currentThread]];
+        [self cacheManagedObjectContext:_mainManagedObjectContext forThread:threadID];
+
+        [self setupSaveNotification];
+    }
+    return self;
 }
 
 - (void)dealloc {
     do {
         @synchronized(self) {
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
+            [self resign];
             
-            SAFE_ARC_SAFERELEASE(_mainManagedObjectContext);
-            SAFE_ARC_SAFERELEASE(_persistentStoreCoordinator);
-            SAFE_ARC_SAFERELEASE(_managedObjectModel);
+            [self.managedObjectContextCahce removeAllObjects];
+            self.managedObjectContextCahce = nil;
+            
+            self.mainManagedObjectContext = nil;
+            self.persistentStoreCoordinator = nil;
+            self.managedObjectModel = nil;
             
             self.queryPSCURLBlock = nil;
             self.configureEntityBlock = nil;
@@ -63,30 +98,37 @@
     NSString *result = nil;
     do {
         @synchronized(self) {
-            if (self.queryPSCURLBlock) {
-                result = [self.queryPSCURLBlock() absoluteString];
+            if (_queryPSCURLBlock) {
+                result = [_queryPSCURLBlock() absoluteString];
             }
         }
     } while (NO);
     return result;
 }
 
-- (int)saveMainManagedObjectContext {
+- (int)saveManagedObjectContext {
     int result = -1;
     do {
         @synchronized(self) {
             NSError *err = nil;
-            NSManagedObjectContext *moc = self.mainManagedObjectContext;
+            NSManagedObjectContext *moc = [self getManagedObjectContextForCurrentThread];
             if (moc != nil) {
                 if ([moc hasChanges] && ![moc save:&err]) {
                     NSLog(@"mainManagedObjectContext save error %@, %@", [err localizedDescription], [err userInfo]);
-                    abort();
                 }
             }
         }
         result = 0;
     } while (NO);
     return result;
+}
+
+- (void)resign {
+    do {
+        @synchronized(self) {
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
+        }
+    } while (NO);
 }
 
 - (int)syncAction:(DCCDSMOCActionBlock)aMOCActionBlock withConfigureBlock:(DCCDSMOCConfigureBlock)aMOCConfigureBlock {
@@ -96,19 +138,26 @@
         if (moc == nil) {
             break;
         }
-        __block BOOL stop = NO;
+        __block NSError *err = nil;
+        __block BOOL shouldCacheContext = NO;
+        NSString *threadID = [NSObject createMemoryID:[NSThread currentThread]];
         if (moc != self.mainManagedObjectContext && aMOCConfigureBlock) {
-            aMOCConfigureBlock(moc, &stop);
-            if (stop) {
+            aMOCConfigureBlock(moc, &err);
+            if (err) {
+                NSLog(@"%@", [err localizedDescription]);
                 break;
             }
         }
         [moc performBlockAndWait:^{
             @autoreleasepool {
-                aMOCActionBlock(self.managedObjectModel, moc, &stop);
+                aMOCActionBlock(self.managedObjectModel, moc, &shouldCacheContext, &err);
+                if (shouldCacheContext) {
+                    [self cacheManagedObjectContext:moc forThread:threadID];
+                }
             }
         }];
-        if (stop) {
+        if (err) {
+            NSLog(@"%@", [err localizedDescription]);
             break;
         }
         result = 0;
@@ -123,119 +172,97 @@
         if (moc == nil) {
             break;
         }
-        __block BOOL stop = NO;
+        __block NSError *err = nil;
+        __block BOOL shouldCacheContext = NO;
+        NSString *threadID = [NSObject createMemoryID:[NSThread currentThread]];
         if (moc != self.mainManagedObjectContext && aMOCConfigureBlock) {
-            aMOCConfigureBlock(moc, &stop);
-            if (stop) {
+            aMOCConfigureBlock(moc, &err);
+            if (err) {
+                NSLog(@"%@", [err localizedDescription]);
                 break;
             }
         }
         [moc performBlock:^{
             @autoreleasepool {
-                aMOCActionBlock(self.managedObjectModel, moc, &stop);
+                aMOCActionBlock(self.managedObjectModel, moc, &shouldCacheContext, &err);
+                if (shouldCacheContext) {
+                    [self cacheManagedObjectContext:moc forThread:threadID];
+                }
+                if (err) {
+                    NSLog(@"%@", [err localizedDescription]);
+                }
             }
         }];
-        if (stop) {
-            break;
-        }
         result = 0;
     } while (NO);
     return result;
 }
 
-- (NSManagedObjectContext *)mainManagedObjectContext {
-    NSManagedObjectContext *result = nil;
-    do {
-        @synchronized(self) {
-            if (_mainManagedObjectContext != nil) {
-                result = _mainManagedObjectContext;
-            } else {
-                _mainManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-                _mainManagedObjectContext.persistentStoreCoordinator = [self persistentStoreCoordinator];
-                result = _mainManagedObjectContext;
-            }
-        }
-    } while (NO);
-    return result;
-}
-
-- (NSManagedObjectModel *)managedObjectModel {
-    NSManagedObjectModel *result = nil;
-    do {
-        @synchronized(self) {
-            if (_managedObjectModel != nil) {
-                result = _managedObjectModel;
-            } else {
-                _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-                SAFE_ARC_RETAIN(_managedObjectModel);
-                if (self.configureEntityBlock) {
-                    self.configureEntityBlock(_managedObjectModel);
-                }
-                result = _managedObjectModel;
-            }
-        }
-    } while (NO);
-    return result;
-}
-
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-    NSPersistentStoreCoordinator *result = nil;
-    do {
-        @synchronized(self) {
-            if (_persistentStoreCoordinator != nil) {
-                result = _persistentStoreCoordinator;
-            } else {
-                NSURL *storeURL = nil;
-                if (self.queryPSCURLBlock) {
-                    storeURL = self.queryPSCURLBlock();
-                }
-                if (storeURL == nil) {
-                    break;
-                }
-                NSError *err = nil;
-                _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-                if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&err]) {
-                    NSLog(@"PSC load error %@, %@", [err localizedDescription], [err userInfo]);
-                    abort();
-                }
-                
-                result = _persistentStoreCoordinator;
-            }
-        }
-    } while (NO);
-    return result;    
-}
-
 #pragma mark - DCCoreDataStore - Private Method
 - (void)setupSaveNotification {
     do {
-        @synchronized(self) {
-            [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification object:nil queue:nil usingBlock:^(NSNotification* note) {
-                NSManagedObjectContext *moc = self.mainManagedObjectContext;
-                if (note.object != moc) {
-                    [moc performBlock:^(){
-                        [moc mergeChangesFromContextDidSaveNotification:note];
-                    }];
+        [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification object:nil queue:nil usingBlock:^(NSNotification* note) {
+            @synchronized(self) {
+                NSArray *allContexts = [_managedObjectContextCahce allValues];
+                for (NSManagedObjectContext *moc in allContexts) {
+                    if (![note.object isEqual:moc]) {
+                        [moc performBlock:^(){
+                            [moc mergeChangesFromContextDidSaveNotification:note];
+                        }];
+                    }
                 }
-            }];
-        }
+            }
+        }];
     } while (NO);
 }
 
-- (NSManagedObjectContext *)queryManagedObjectContextForCurrentThread {
+- (NSManagedObjectContext *)getManagedObjectContextForCurrentThread {
     NSManagedObjectContext *result = nil;
     do {
         @synchronized(self) {
             if ([[NSThread currentThread] isMainThread]) {
                 result = self.mainManagedObjectContext;
             } else {
-                result = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-                result.persistentStoreCoordinator = self.persistentStoreCoordinator;
-                SAFE_ARC_AUTORELEASE(result);
+                if (_managedObjectContextCahce) {
+                    NSString *threadID = [NSObject createMemoryID:[NSThread currentThread]];
+                    result = [_managedObjectContextCahce objectForKey:threadID];
+                }
             }
         }
     } while (NO);
     return result;
+}
+
+- (NSManagedObjectContext *)queryManagedObjectContextForCurrentThread {
+    NSManagedObjectContext *result = nil;
+    do {
+        result = [self getManagedObjectContextForCurrentThread];
+        if (!result) {
+            @synchronized(self) {
+                result = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+                result.persistentStoreCoordinator = self.persistentStoreCoordinator;
+            }
+        }
+    } while (NO);
+    return result;
+}
+
+- (void)cacheManagedObjectContext:(NSManagedObjectContext *)context forThread:(NSString *)threadID {
+    do {
+        if (!context || !threadID) {
+            break;
+        }
+        @synchronized(self) {
+            if (!_managedObjectContextCahce) {
+                break;
+            }
+            id obj = [_managedObjectContextCahce objectForKey:threadID];
+            if (obj) {
+                break;
+            }
+            [_managedObjectContextCahce setObject:context forKey:threadID];
+        }
+    } while (NO);
 }
 
 @end
