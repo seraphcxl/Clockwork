@@ -384,6 +384,14 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Derek Chen";
+				TargetAttributes = {
+					894320031991C7E80008FCD3 = {
+						TestTargetID = 89431FF71991C7E80008FCD3;
+					};
+					894320291991C7F80008FCD3 = {
+						TestTargetID = 8943201B1991C7F80008FCD3;
+					};
+				};
 			};
 			buildConfigurationList = 89431FC51991C7290008FCD3 /* Build configuration list for PBXProject "Clockwork" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -657,6 +665,7 @@
 		};
 		894320161991C7E80008FCD3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8501FD72CA184FB495BE04E3 /* Pods-Clockwork-OSX.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -677,6 +686,7 @@
 		};
 		894320171991C7E80008FCD3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8501FD72CA184FB495BE04E3 /* Pods-Clockwork-OSX.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -728,6 +738,7 @@
 		};
 		8943203E1991C7F80008FCD3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A473AC7706BC4770B9A7B101 /* Pods-Clockwork-iOS.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -750,6 +761,7 @@
 		};
 		8943203F1991C7F80008FCD3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A473AC7706BC4770B9A7B101 /* Pods-Clockwork-iOS.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
